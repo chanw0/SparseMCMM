@@ -32,7 +32,7 @@ library(devtools)
 install_github("chanw0/SparseMCMM")
 ```
 
-## ANCOM-BC main function
+## SparseMCMM main function
 
 #### Usage:
 
