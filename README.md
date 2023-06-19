@@ -132,8 +132,7 @@ Calculate estimates of DE, ME, TE, and component-wise MEs based on a single rand
 
 ```{r example1}
 set.seed(123)
-res=SparseMCMM(Treatment,otu.com,outcome,n.split=1,
-          num.per=NULL)
+res=SparseMCMM(Treatment, otu.com, outcome, n.split=1, num.per=NULL)
 ```
 
 ### Example 2
@@ -142,8 +141,7 @@ Calculate estimates of DE, ME, TE, and component-wise MEs based on 10 times of r
 
 ```{r example2}
 set.seed(123)
-res=SparseMCMM(Treatment,otu.com,outcome,n.split=10,
-          num.per=NULL)
+res=SparseMCMM(Treatment, otu.com, outcome, n.split=10, num.per=NULL)
 ```
 
 ### Example 3
@@ -152,6 +150,5 @@ Calculate p-values based on 200 times of permutations in a single random data sp
 
 ```{r example3}
 set.seed(123)
-res=SparseMCMM(Treatment,otu.com,outcome,n.split=1,
-          num.per=200)
+res=SparseMCMM(Treatment, otu.com, outcome, n.split=1, num.per=200)
 ```
