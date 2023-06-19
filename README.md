@@ -113,7 +113,7 @@ res=SparseMCMM(Treatment, otu.com, outcome, n.split=1, num.per=NULL)
 Calculate estimates of DE, ME, TE, and component-wise MEs based on 10 times of repetitions.
 
 ```{r example2}
-set.seed(123)
+set.seed(1234)
 res=SparseMCMM(Treatment, otu.com, outcome, n.split=10, num.per=NULL)
 ```
 
@@ -122,6 +122,6 @@ res=SparseMCMM(Treatment, otu.com, outcome, n.split=10, num.per=NULL)
 Calculate p-values based on 200 times of permutations in a single random data split 
 
 ```{r example3}
-set.seed(123)
+set.seed(1234)
 res=SparseMCMM(Treatment, otu.com, outcome, n.split=1, num.per=200)
 ```
