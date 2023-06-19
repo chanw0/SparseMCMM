@@ -86,7 +86,6 @@ If n.split > 1, the 'Esitmated Causal Effects' component is a 2 x 3 matrix. The 
 If n.split > 1, the 'Estimated component-wise Mediation Effects' component is a 3 x p matrix.  The first row contains the average estimates of compoment-wise MEs for all p taxa based on n.split times of repetitions. Correspondingly, the second and third rows provide the lower and upper 95\% confidence interval associated with these averages. If n.split=1,  the 'EEstimated component-wise Mediation Effects' component is a vector of length p. This vector contains the estimates for compoment-wise MEs which are calculated based on a single, random data split.
 }
 
-
 \references{
 Wang C, Hu J, Blaser MJ, and Li H (2020). Estimating and testing the microbial causal mediation effect with high-dimensional and compositional microbiome data. Bioinformatics. 36(2):347-355.
 
