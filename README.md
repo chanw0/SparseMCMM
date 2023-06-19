@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 *Author & Maintainer: Chan Wang <Chan.Wang@nyulangone.org> and Huilin Li <Huilin.Li@nyulangone.org>*
 
-Sparse Microbial Causal Mediation Model (SparseMCMM) is designed for the high dimensional and compositional microbiome data. SparseMCMM utilizes the linear log-contrast regression and Dirichlet regression to quantify the causal direct effect of the treatment and the causal mediation effect of the microbiome on the outcome under the counterfactual framework while addressing the compositional structure of microbiome data. Further it implements regularization techniques to handle the high-dimensional microbial mediators and identify the signature causal microbes. Furthermore, a splitting strategy (Rinaldo et al; 2019) is incorporated to account for the biases introduced by the regularization techniques employed.
+Sparse Microbial Causal Mediation Model (SparseMCMM) is designed for the high dimensional and compositional microbiome data. SparseMCMM utilizes the linear log-contrast regression and Dirichlet regression to quantify the causal direct effect of the treatment and the causal mediation effect of the microbiome on the outcome under the counterfactual framework while addressing the compositional structure of microbiome data. Further it implements regularization techniques to handle the high-dimensional microbial mediators and identify the signature causal microbes. Furthermore, a splitting strategy ([Rinaldo et al; 2019](https://projecteuclid.org/journals/annals-of-statistics/volume-47/issue-6/Bootstrapping-and-sample-splitting-for-high-dimensional-assumption-lean-inference/10.1214/18-AOS1784.full)) is incorporated to account for the biases introduced by the regularization techniques employed.
 
 SparseMCMM is particularly effective in examining the mediation effect of the microbiome within a standard three-factor (treatment, microbiome, and outcome) causal study design ([SparseMCMM](https://academic.oup.com/bioinformatics/article/36/2/347/5536874)). Moverover, the analytic procedure of SparseMCMM can be harnessed to explore the influences of the microbiome on health disparities.This is depicted in an extension of the model, [SparseMCMM_HD](https://pubmed.ncbi.nlm.nih.gov/36712075/), as elucidated in Wang et al. (2023). We also discuss the differences and relevance between SparseMCMM and SparseMCMM_HD (Wang et al; 2023). It's noteworthy that the mathematical expressions of the Residual Disparity Measure (RDM), Manipulable Disparity Measure (MDM), and Overall Disparity Measure (ODM), proposed by SparseMCMM_HD, align precisely with the formulas for the Causal Direct Effect of treatment (DE), the Mediation Effect through the microbiome (ME), and the Total Effect (TE) on the outcome, as formulated in our SparseMCMM. To simplify the discussion, we will refer to these as DE, ME, and TE henceforth.
 
@@ -90,11 +90,9 @@ If n.split > 1, the 'Estimated component-wise Mediation Effects' component is a 
 
 ## Examples
 
-
 ### Data generation
 
 ```{r datageneration}
-
 library(SparseMCMM)
 
 ########### generation data
@@ -116,7 +114,6 @@ alphaZ=alphaC=rep(0,otu.num)
 alphaZ[c(1,3)]=c(0.7,-0.7)
 alphaC[c(1,3)]=c(0.15,-0.15)
 
-
 ############Microbiome data
 library(dirmult)
 X=cbind(rep(1,sample.num),Treatment)
@@ -128,8 +125,6 @@ otu.com=t(apply(gamma.simu,1,rdirichlet,n=1))
 X=cbind(rep(1,sample.num),Treatment,log(otu.com),log(otu.com)*Treatment)
 b=c(alpha0,alphaT,alphaZ,alphaC)
 outcome=c(b%*%t(X)+rnorm(sample.num,mean = 0, sd =1))
-
-
 ```
 ### Example 1
 
@@ -139,7 +134,6 @@ Calculate estimates of DE, ME, TE, and component-wise MEs based on a single rand
 set.seed(123)
 res=SparseMCMM(Treatment,otu.com,outcome,n.split=1,
           num.per=NULL)
-
 ```
 
 ### Example 2
