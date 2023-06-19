@@ -1,3 +1,3 @@
-# SparseMCMM 2.0.0
+# SparseMCMM 2.0.1
 
 * Initial CRAN submission.
