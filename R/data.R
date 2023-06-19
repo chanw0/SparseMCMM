@@ -4,7 +4,7 @@
 #' @format A data list with three components:
 #' \describe{
 #'   \item{Treatment}{A treatment vector for 100 subjects. 0 represents the control group and 1 represents the case group.}
-#'   \item{otu.com}{A 100 x 10 numeric matrix containing compositional microbiome data. Each row represents a subject, and each column represents a
+#'   \item{otu.com}{A 100 x 10 numeric matrix containing compositional microbiome data. Each row is a subject, and each column is a
 #'   taxon. The row sum equals 1.}
 #'   \item{outcome}{A outcome vector for 100 subjects.}
 #' }
