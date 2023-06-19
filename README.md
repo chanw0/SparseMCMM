@@ -90,48 +90,21 @@ If n.split > 1, the 'Estimated component-wise Mediation Effects' component is a 
 
 ## Examples
 
-### Data generation
+### Simulation Data
 
 ```{r datageneration}
 library(SparseMCMM)
 
-########### generation data
-### Sample size and number of mediators
-sample.num=100
-otu.num=10
-
-###Treatment
-Treatment=rep(c(0,1),each=sample.num/2)
-
-### parameters
-beta0=c(0.6, -0.3, 0.8, -1.4, -1.2, -1.4, -1.3, -1.0, -0.2, 0.6)
-betaT=rep(0,otu.num)
-betaT[c(1,3)]=c(0.4,0.2)
-
-alpha0=0
-alphaT=1
-alphaZ=alphaC=rep(0,otu.num)
-alphaZ[c(1,3)]=c(0.7,-0.7)
-alphaC[c(1,3)]=c(0.15,-0.15)
-
-############Microbiome data
-library(dirmult)
-X=cbind(rep(1,sample.num),Treatment)
-b=cbind(beta0,betaT)
-gamma.simu=exp(X %*% t(b))
-otu.com=t(apply(gamma.simu,1,rdirichlet,n=1))
-
-##################Outcome  data
-X=cbind(rep(1,sample.num),Treatment,log(otu.com),log(otu.com)*Treatment)
-b=c(alpha0,alphaT,alphaZ,alphaC)
-outcome=c(b%*%t(X)+rnorm(sample.num,mean = 0, sd =1))
+Treatment=SimulatedData$Treatment;
+otu.com=SimulatedData$otu.com
+outcome=SimulatedData$outcome
 ```
 ### Example 1
 
 Calculate estimates of DE, ME, TE, and component-wise MEs based on a single random data split.
 
 ```{r example1}
-set.seed(123)
+set.seed(1234)
 res=SparseMCMM(Treatment, otu.com, outcome, n.split=1, num.per=NULL)
 ```
 
