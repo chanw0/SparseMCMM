@@ -100,39 +100,12 @@ Chan Wang and Huilin Li.
 }
 
 \examples{
-
-# ########### generation data
-# ### Sample size and number of mediators
-# sample.num=100
-# otu.num=10
+# library(SparseMCMM)
 #
-# ###Treatment
-# Treatment=rep(c(0,1),each=sample.num/2)
-#
-# ### parameters
-# beta0=c(0.6, -0.3, 0.8, -1.4, -1.2, -1.4, -1.3, -1.0, -0.2, 0.6)
-# betaT=rep(0,otu.num)
-# betaT[c(1,3)]=c(0.4,0.2)
-#
-# alpha0=0
-# alphaT=1
-# alphaZ=alphaC=rep(0,otu.num)
-# alphaZ[c(1,3)]=c(0.7,-0.7)
-# alphaC[c(1,3)]=c(0.15,-0.15)
-#
-#
-# ############Microbiome data
-# library(dirmult)
-# X=cbind(rep(1,sample.num),Treatment)
-# b=cbind(beta0,betaT)
-# gamma.simu=exp(X %*% t(b))
-# otu.com=t(apply(gamma.simu,1,rdirichlet,n=1))
-#
-# ##################Outcome  data
-# X=cbind(rep(1,sample.num),Treatment,log(otu.com),log(otu.com)*Treatment)
-# b=c(alpha0,alphaT,alphaZ,alphaC)
-# outcome=c(b%*%t(X)+rnorm(sample.num,mean = 0, sd =1))
-#
+# ##### Simulation data
+# Treatment=SimulatedData$Treatment;
+# otu.com=SimulatedData$otu.com
+# outcome=SimulatedData$outcome
 #
 # ##### SparseMCMM function
 # SparseMCMM(Treatment,otu.com,outcome,n.split=1,
