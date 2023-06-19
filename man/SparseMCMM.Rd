@@ -9,10 +9,10 @@ This function provides estimates of DE, ME, TE, and component-wise MEs. Addition
 
 
 \usage{
-SparseMCMM(Treatment,otu.com,outcome,n.split=10,
+SparseMCMM(Treatment, otu.com, outcome, n.split=10,
                     dirichlet.penalty=seq(0,1,0.1),
-                    lm.penalty1=seq(0,1,0.1),lm.penalty2=seq(0,2,0.2),
-                    low.bound1=NULL,up.bound1=NULL,low.bound2=NULL,up.bound2=NULL,
+                    lm.penalty1=seq(0,1,0.1), lm.penalty2=seq(0,2,0.2),
+                    low.bound1=NULL, up.bound1=NULL, low.bound2=NULL, up.bound2=NULL,
                     num.per=NULL)
 }
 
