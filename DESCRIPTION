@@ -15,10 +15,12 @@ Authors@R: c(
            role = c("aut")) )
 License: Artistic-2.0
 Imports: Compositional, stats, nloptr
+Suggests: testthat (>= 3.0.0)
 Encoding: UTF-8
-LazyData: false
+LazyData: true
 URL: https://github.com/chanw0/SparseMCMM
 BugReports: http://github.com/chanw0/SparseMCMM/issues
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Depends: R (>= 4.3.0)
+Config/testthat/edition: 3
