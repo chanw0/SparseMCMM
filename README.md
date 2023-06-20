@@ -3,7 +3,7 @@ title: "SparseMCMM"
 output: github_document
 ---
 
-```{r, echo = FALSE}
+```{r, include = FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
