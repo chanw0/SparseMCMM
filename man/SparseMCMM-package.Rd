@@ -23,7 +23,7 @@ Consequentially, SparseMCMM provides a clear and sensible causal path analysis a
 Package: \tab SparseMCMM\cr
 Type: \tab Package\cr
 Version: \tab 2.0\cr
-Date: \tab 2023-06-19\cr
+Date: \tab 2025-11-24\cr
 License: \tab Artistic-2.0 \cr
 }
 }

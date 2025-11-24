@@ -9,11 +9,14 @@ This function provides estimates of DE, ME, TE, and component-wise MEs. Addition
 
 
 \usage{
-SparseMCMM(Treatment, otu.com, outcome, n.split=10,
+SparseMCMM=function(Treatment, otu.com, outcome, n.split=10,
                     dirichlet.penalty=seq(0,1,0.1),
-                    lm.penalty1=seq(0,1,0.1), lm.penalty2=seq(0,2,0.2),
-                    low.bound1=NULL, up.bound1=NULL, low.bound2=NULL, up.bound2=NULL,
-                    num.per=NULL)
+                    lm.penalty1=seq(0,1,0.1),lm.penalty2=seq(0,2,0.2),
+                    low.bound1=NULL,up.bound1=NULL,low.bound2=NULL,
+                    up.bound2=NULL, num.per=NULL,
+                    parallel = TRUE,
+                    ncores = future::availableCores() - 1,
+                    seed = NULL )
 }
 
 
@@ -63,6 +66,12 @@ A numeric vector representing the upper bounds of the controls employed during t
   \item{num.per}{
 An integer value, the number of permuations. statistical significances of tests TME and CME are calculated based on these permutations. Default=NULL, No calculation for hypothesis test.
 }
+
+  \item{parallel}{logtic. Whether parallel is used or not. Dafult=TRUE}
+
+  \item{ncores}{numeric. The numb er of nodes to be forked. Dafult=future::availableCores() - 1}
+
+  \item{seed}{The random seed used in the parallel process. seed = NULL}
 
 }
 
