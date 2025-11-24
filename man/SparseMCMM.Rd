@@ -69,7 +69,7 @@ An integer value, the number of permuations. statistical significances of tests 
 
   \item{parallel}{logtic. Whether parallel is used or not. Dafult=TRUE}
 
-  \item{ncores}{numeric. The numb er of nodes to be forked. Dafult=future::availableCores() - 1}
+  \item{ncores}{numeric. The number of nodes to be forked. Dafult=future::availableCores() - 1}
 
   \item{seed}{The random seed used in the parallel process. seed = NULL}
 
