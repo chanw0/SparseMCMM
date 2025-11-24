@@ -36,7 +36,7 @@ install_github("chanw0/SparseMCMM")
 
 #### Usage:
 
-*	```SparseMCMM(Treatment, otu.com, outcome, n.split, dirichlet.penalty,lm.penalty1, lm.penalty2, low.bound1, up.bound1, low.bound2, up.bound2, num.per)```
+*	```SparseMCMM(Treatment, otu.com, outcome, n.split, dirichlet.penalty,lm.penalty1, lm.penalty2, low.bound1, up.bound1, low.bound2, up.bound2, num.per, parallel, ncores, seed)```
 
 #### Arguments:
 
@@ -62,6 +62,12 @@ install_github("chanw0/SparseMCMM")
 *	```up.bound2```: A numeric vector representing the upper bounds of the controls employed during the estimation process in relation to Model 2.
 
 * ```num.per```: An integer value, the number of permutations.
+
+* ```parallel```: Logical value, whether the parallel procedure is used.
+
+* ```ncores```: An integer value, the number of nodes to be forked. Dafult=future::availableCores() - 1.
+
+* ```seeds```: The random seed used in the parallel process.
 
 #### Value:
 
