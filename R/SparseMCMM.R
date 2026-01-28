@@ -28,8 +28,6 @@ SparseMCMM=function(Treatment,otu.com,outcome,n.split=10,
   ### Outer Parallel Loop: Parallelize over splits
   results <- future_map(1:n.split, function(tt) {
 
-    #  All.per=Individual.per=NULL
-    # for(tt in 1:n.split) {
 
     ### variable selection
     Training=c(sample(which(Treatment==1),ceiling(sum(Treatment==1)/2)),
@@ -85,46 +83,41 @@ SparseMCMM=function(Treatment,otu.com,outcome,n.split=10,
       # Parallelize over permutations within the split
       perm_results <- future_map(1:num.per, function(rr) {
 
-        for(rr in 1:100) {
-          Treatment.per=sample(Treatment,length(Treatment))
-          outcome.per=sample(outcome, length(outcome))
+        Treatment.per=sample(Treatment,length(Treatment))
+        outcome.per=sample(outcome, length(outcome))
 
-          Treatment.training=Treatment.per[Training]
-          otu.com.training=otu.com[Training,]
-          outcome.training=outcome.per[Training]
+        Treatment.training=Treatment.per[Training]
+        otu.com.training=otu.com[Training,]
+        outcome.training=outcome.per[Training]
 
-          betas=beta.estimates(Treatment.training,otu.com.training,penalty.lambda=dirichlet.penalty,
-                               low.bound=low.bound2,up.bound=up.bound2)
+        betas=beta.estimates(Treatment.training,otu.com.training,penalty.lambda=dirichlet.penalty,
+                             low.bound=low.bound2,up.bound=up.bound2)
 
-          beta.estimation=rep(0,length(betas))
-          Index_beta=betas[-c(1:ncol(otu.com))]==0
-          Index_0 <- if(sum(Index_beta) > 0) which(Index_beta) else NULL
+        beta.estimation=rep(0,length(betas))
+        Index_beta=betas[-c(1:ncol(otu.com))]==0
+        Index_0 <- if(sum(Index_beta) > 0) which(Index_beta) else NULL
 
-          Alpha.Est0=alpha.estimates(Treatment.training,otu.com.training,outcome.training,
-                                     penalty.lambda1=lm.penalty1,penalty.lambda2=lm.penalty2,
-                                     low.bound=low.bound1,up.bound=up.bound1)
+        Alpha.Est0=alpha.estimates(Treatment.training,otu.com.training,outcome.training,
+                                   penalty.lambda1=lm.penalty1,penalty.lambda2=lm.penalty2,
+                                   low.bound=low.bound1,up.bound=up.bound1)
 
-          Index_alpha=Alpha.Est0==0
-          Index_alpha0 <- if(sum(Index_alpha) > 0) which(Index_alpha) else NULL
-          alpha.estimation=rep(0,length(Alpha.Est0))
+        Index_alpha=Alpha.Est0==0
+        Index_alpha0 <- if(sum(Index_alpha) > 0) which(Index_alpha) else NULL
+        alpha.estimation=rep(0,length(Alpha.Est0))
 
-          ### post-selection estimation
-          Treatment.est=Treatment.per[-Training]
-          otu.com.est=otu.com[-Training,]
-          outcome.est=outcome.per[-Training]
-
-
-          est.beta=beta.estimates2(Treatment.est,otu.com.est,Index_0)
-          if(!is.null(Index_0))  beta.estimation[-c(Index_0+ncol(otu.com))]=est.beta else  beta.estimation=est.beta
+        ### post-selection estimation
+        Treatment.est=Treatment.per[-Training]
+        otu.com.est=otu.com[-Training,]
+        outcome.est=outcome.per[-Training]
 
 
-          est.alpha=alpha.estimates2(Treatment.est,otu.com.est,outcome.est,Index_alpha0)
-          if(!is.null(Index_alpha0))  alpha.estimation[-Index_alpha0]=est.alpha else  alpha.estimation=est.alpha
+        est.beta=beta.estimates2(Treatment.est,otu.com.est,Index_0)
+        if(!is.null(Index_0))  beta.estimation[-c(Index_0+ncol(otu.com))]=est.beta else  beta.estimation=est.beta
 
-          print(rr)
-          #print(beta.estimation); print(alpha.estimation)
 
-          if(sum(is.na(beta.estimation))>0) break;}
+        est.alpha=alpha.estimates2(Treatment.est,otu.com.est,outcome.est,Index_alpha0)
+        if(!is.null(Index_alpha0))  alpha.estimation[-Index_alpha0]=est.alpha else  alpha.estimation=est.alpha
+
 
         ### mediation effect
         CausalEffect=CausalE(otu.com,alpha.estimation=alpha.estimation,
